@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout android:orientation="vertical"
+    android:id="@+id/singleImageDisplayFragment_LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="&lt;"
+            android:id="@+id/singleImageDisplayReturn_Button"
+            android:background="?attr/colorPrimaryDark"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Details"
+            android:id="@+id/searchResultsLabel"
+            android:background="?attr/colorPrimaryDark"
+            android:gravity="center_horizontal"
+            android:textSize="30sp" />
+</FrameLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.example.janus.imageviewer.util.SquareImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/singleImage_ImageView"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postedBy_ImageView"
+                android:paddingLeft="40dp"
+                android:src="@drawable/user_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Posted by:"
+                android:id="@+id/postedBy_Label"
+                android:textSize="22sp"
+                android:paddingLeft="5dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/postedBy_TextView"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorites_ImageView"
+                android:paddingLeft="40dp"
+                android:src="@drawable/favorites_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorites:"
+                android:id="@+id/favorites_Label"
+                android:textSize="22sp"
+                android:paddingLeft="5dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/favorites_TextView"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likes_ImageView"
+                android:paddingLeft="40dp"
+                android:src="@drawable/likes_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Likes:"
+                android:id="@+id/likes_Label"
+                android:textSize="22sp"
+                android:paddingLeft="5dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/likes_TextView"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/comments_ImageView"
+                android:paddingLeft="40dp"
+                android:src="@drawable/comments_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comments:"
+                android:id="@+id/comments_Label"
+                android:textSize="22sp"
+                android:paddingLeft="5dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/comments_TextView"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:paddingLeft="10dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
+
