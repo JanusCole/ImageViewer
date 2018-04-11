@@ -28,7 +28,7 @@ public class ImageSearchPresenter implements ImageSearchContract.Presenter {
         // Call the repository and pass it the search criteria entered by the user.
         imagesService.getImages(searchCriteria, 1, new ImageServiceInterface.ImagesSearchCallback() {
             @Override
-            public void onImagesFound(List<ImageDescription> returnedImages) {
+            public void onImagesFound(List<ImageDescription> returnedImages, int imageCount) {
                 // If the List of results has size zero, then no images were found
                 if (returnedImages.size() == 0) {
                     imageSearchView.displayNotFoundMessage();

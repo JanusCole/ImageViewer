@@ -11,7 +11,7 @@ public interface ImageServiceInterface {
 
     interface ImagesSearchCallback {
 
-        void onImagesFound(List<ImageDescription> returnedImages);
+        void onImagesFound(List<ImageDescription> returnedImages, int imageCount);
         void endOfDataReached();
         void onNetworkError();
 

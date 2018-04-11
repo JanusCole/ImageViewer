@@ -13,7 +13,7 @@ public class ImageService implements ImageServiceInterface {
 
     private static ImageService INSTANCE = null;
 
-    ImageDataSource imageDataSource;
+    private ImageService imageDataSource;
 
 // This is the image cache. It saves ImageDescription objects in a HashMap keyed on the image ID
     Map<Integer,ImageDescription> imageCache = new HashMap<>();
@@ -23,17 +23,15 @@ public class ImageService implements ImageServiceInterface {
     int lastPageNumber = 0;
     int totalImagesAvailable = 0;
 
-    private ImageService(ImageDataSource imageDataSource) {
+    private ImageService(ImageService imageDataSource) {
         this.imageDataSource = imageDataSource;
     }
 
 // There an be only one
-    public static ImageService getInstance (ImageDataSource imageDataSource) {
+    public static ImageService getInstance (ImageService imageDataSource) {
         if (INSTANCE == null) {
-            synchronized (ImageService.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = new ImageService(imageDataSource);
-                }
+            if (INSTANCE == null) {
+                INSTANCE = new ImageService(imageDataSource);
             }
         }
         return INSTANCE;
@@ -51,7 +49,7 @@ public class ImageService implements ImageServiceInterface {
             } else {
 
         // Search the data source using the passed search criteria and a page number
-                imageDataSource.getImages(searchCriteria, requestedPageNumber, new ImageDataSource.ImageSearchCallback() {
+                imageDataSource.getImages(searchCriteria, requestedPageNumber, new ImageService.ImagesSearchCallback() {
                     @Override
                     public void onImagesFound(List<ImageDescription> returnedImages, int imageCount) {
 
@@ -72,7 +70,12 @@ public class ImageService implements ImageServiceInterface {
                         lastPageNumber = requestedPageNumber;
 
                         // Return the retrieved ImageDescription objects as a List
-                        imagesSearchCallback.onImagesFound(returnedImages);
+                        imagesSearchCallback.onImagesFound(returnedImages, imageCount);
+                    }
+
+                    @Override
+                    public void endOfDataReached() {
+                        imagesSearchCallback.endOfDataReached();
                     }
 
                     @Override
@@ -90,7 +93,7 @@ public class ImageService implements ImageServiceInterface {
                 resultList.add(imageEntry.getValue());
             }
 
-            imagesSearchCallback.onImagesFound(resultList);
+            imagesSearchCallback.onImagesFound(resultList, totalImagesAvailable);
         }
     }
 

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 // This class calls a REST API using Retrofit.
 
-public class RemoteImageDataSource implements ImageDataSource {
+public class RemoteImageDataSource implements ImageServiceInterface {
 
 // This implements the remote data source REST API
     RemoteImageAPI remoteImageService;
@@ -20,7 +20,7 @@ public class RemoteImageDataSource implements ImageDataSource {
         this.remoteImageService = remoteImageService;
     }
 
-    public void getImages (String searchCriteria, int pageNumber, final ImageSearchCallback imageSearchCallback) {
+    public void getImages (String searchCriteria, int pageNumber, final ImageServiceInterface.ImagesSearchCallback imagesSearchCallback) {
 
 // Format the search criteria string for query
         String formattedSearchCriteria = searchCriteria.replace(" ", "+");
@@ -41,20 +41,23 @@ public class RemoteImageDataSource implements ImageDataSource {
             public void onResponse(Call<ImageSearchResults> call, Response<ImageSearchResults> response) {
 
                 if (response.isSuccessful()) {
-                    imageSearchCallback.onImagesFound(response.body().getHits(), response.body().getTotal());
+                    imagesSearchCallback.onImagesFound(response.body().getHits(), response.body().getTotal());
                 } else {
-                    imageSearchCallback.onNetworkError();
+                    imagesSearchCallback.onNetworkError();
                 }
             }
 
             @Override
             public void onFailure(Call<ImageSearchResults> call, Throwable t) {
-                imageSearchCallback.onNetworkError();
+                imagesSearchCallback.onNetworkError();
              }
         });
 
 
     }
 
-
+    @Override
+    public void getImage(int imageID, ImageSearchCallback imagesSearchCallback) {
+        throw new UnsupportedOperationException();
+    }
 }

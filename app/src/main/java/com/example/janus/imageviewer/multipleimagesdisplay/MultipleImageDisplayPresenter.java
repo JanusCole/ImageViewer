@@ -21,7 +21,8 @@ public class MultipleImageDisplayPresenter implements MultipleImageDisplayContra
 
     // Save the current collection of ImageDescriptions. This will be used to get the image ID when a specific image
     // is selected for display
-    List <ImageDescription> resultImages = new ArrayList<>();
+    private List <ImageDescription> resultImages = new ArrayList<>();
+    int totalImagesAvailable = 0;
 
     // This Presenter supports pagination. Set the current page to zero and increment it whenever data is retrieved
     private int currentPage = 0;
@@ -52,7 +53,9 @@ public class MultipleImageDisplayPresenter implements MultipleImageDisplayContra
     // Call the repository for the next page of data
             imagesService.getImages(searchCriteria, ++currentPage, new ImageServiceInterface.ImagesSearchCallback() {
                 @Override
-                public void onImagesFound(List<ImageDescription> returnedImages) {
+                public void onImagesFound(List<ImageDescription> returnedImages, int imageCount) {
+
+                    totalImagesAvailable = imageCount;
 
     // Save the results to a List to be used when the View requests an image ID
                     resultImages.addAll(returnedImages);
