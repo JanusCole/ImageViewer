@@ -1,8 +1,8 @@
 package com.example.janus.imageviewer.multipleimagesdisplay;
 
 import com.example.janus.imageviewer.data.models.ImageDescription;
-import com.example.janus.imageviewer.data.source.ImageRepository;
-import com.example.janus.imageviewer.data.source.Repository;
+import com.example.janus.imageviewer.data.source.ImageService;
+import com.example.janus.imageviewer.data.source.ImageServiceInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
 public class MultipleImageDisplayPresenter implements MultipleImageDisplayContract.Presenter {
 
     private MultipleImageDisplayContract.View multipleImagesDisplayView;
-    private ImageRepository imagesService;
+    private ImageService imagesService;
     private String searchCriteria;
 
     // Save the current collection of ImageDescriptions. This will be used to get the image ID when a specific image
@@ -29,7 +29,7 @@ public class MultipleImageDisplayPresenter implements MultipleImageDisplayContra
     // Only load pages one at a time
     boolean loadingImages = false;
 
-    public MultipleImageDisplayPresenter(ImageRepository imagesService, MultipleImageDisplayContract.View multipleImagesDisplayView) {
+    public MultipleImageDisplayPresenter(ImageService imagesService, MultipleImageDisplayContract.View multipleImagesDisplayView) {
         this.imagesService = imagesService;
         this.multipleImagesDisplayView = multipleImagesDisplayView;
 
@@ -50,7 +50,7 @@ public class MultipleImageDisplayPresenter implements MultipleImageDisplayContra
             loadingImages = true;
 
     // Call the repository for the next page of data
-            imagesService.getImages(searchCriteria, ++currentPage, new Repository.ImagesSearchCallback() {
+            imagesService.getImages(searchCriteria, ++currentPage, new ImageServiceInterface.ImagesSearchCallback() {
                 @Override
                 public void onImagesFound(List<ImageDescription> returnedImages) {
 

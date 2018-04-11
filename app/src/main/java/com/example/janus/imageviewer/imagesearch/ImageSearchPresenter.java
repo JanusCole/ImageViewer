@@ -1,8 +1,8 @@
 package com.example.janus.imageviewer.imagesearch;
 
 import com.example.janus.imageviewer.data.models.ImageDescription;
-import com.example.janus.imageviewer.data.source.ImageRepository;
-import com.example.janus.imageviewer.data.source.Repository;
+import com.example.janus.imageviewer.data.source.ImageService;
+import com.example.janus.imageviewer.data.source.ImageServiceInterface;
 
 import java.util.List;
 
@@ -15,9 +15,9 @@ import java.util.List;
 public class ImageSearchPresenter implements ImageSearchContract.Presenter {
 
     private ImageSearchContract.View imageSearchView;
-    private ImageRepository imagesService;
+    private ImageService imagesService;
 
-    public ImageSearchPresenter(ImageRepository imagesService, ImageSearchContract.View imageSearchView) {
+    public ImageSearchPresenter(ImageService imagesService, ImageSearchContract.View imageSearchView) {
         this.imagesService = imagesService;
         this.imageSearchView = imageSearchView;
 
@@ -26,7 +26,7 @@ public class ImageSearchPresenter implements ImageSearchContract.Presenter {
 
     public void loadImages(final String searchCriteria) {
         // Call the repository and pass it the search criteria entered by the user.
-        imagesService.getImages(searchCriteria, 1, new Repository.ImagesSearchCallback() {
+        imagesService.getImages(searchCriteria, 1, new ImageServiceInterface.ImagesSearchCallback() {
             @Override
             public void onImagesFound(List<ImageDescription> returnedImages) {
                 // If the List of results has size zero, then no images were found

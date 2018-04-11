@@ -14,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RemoteImageDataSource implements ImageDataSource {
 
 // This implements the remote data source REST API
-    RemoteImageService remoteImageService;
+    RemoteImageAPI remoteImageService;
 
-    public RemoteImageDataSource(RemoteImageService remoteImageService) {
+    public RemoteImageDataSource(RemoteImageAPI remoteImageService) {
         this.remoteImageService = remoteImageService;
     }
 
@@ -31,7 +31,7 @@ public class RemoteImageDataSource implements ImageDataSource {
                 .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = retrofitBuilder.build();
-        RemoteImageService.ImagesInterface imagesAPIClient = retrofit.create(RemoteImageService.ImagesInterface.class);
+        RemoteImageAPI.ImagesInterface imagesAPIClient = retrofit.create(RemoteImageAPI.ImagesInterface.class);
 
         Call<ImageSearchResults> imageSearchCall = imagesAPIClient.getImages(BuildConfig.APIKEY,formattedSearchCriteria, pageNumber);
 
@@ -41,7 +41,7 @@ public class RemoteImageDataSource implements ImageDataSource {
             public void onResponse(Call<ImageSearchResults> call, Response<ImageSearchResults> response) {
 
                 if (response.isSuccessful()) {
-                    remoteImagesSearchCallback.onImagesFound(response.body());
+                    remoteImagesSearchCallback.onImagesFound(response.body().getHits(), response.body().getTotal());
                 } else {
                     remoteImagesSearchCallback.onNetworkError();
                 }

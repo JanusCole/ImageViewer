@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.janus.imageviewer.R;
-import com.example.janus.imageviewer.data.source.RemoteImageService;
-import com.example.janus.imageviewer.data.source.ImageRepository;
+import com.example.janus.imageviewer.data.source.RemoteImageAPI;
+import com.example.janus.imageviewer.data.source.ImageService;
 import com.example.janus.imageviewer.data.source.RemoteImageDataSource;
 import com.example.janus.imageviewer.data.source.ImageDataSource;
 
@@ -33,9 +33,9 @@ public class ImageSearchActivity extends AppCompatActivity {
 
         // Create the presenter and pass it a repository
 
-        RemoteImageService imagesAPI = new RemoteImageService();
+        RemoteImageAPI imagesAPI = new RemoteImageAPI();
         ImageDataSource remoteImagesSource = new RemoteImageDataSource(imagesAPI);
-        ImageRepository imagesService = ImageRepository.getInstance(remoteImagesSource);
+        ImageService imagesService = ImageService.getInstance(remoteImagesSource);
         imageSearchPresenter = new ImageSearchPresenter(imagesService, imageSearchFragment);
 
     }

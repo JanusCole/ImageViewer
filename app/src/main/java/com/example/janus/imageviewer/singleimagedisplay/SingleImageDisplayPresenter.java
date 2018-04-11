@@ -5,8 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
 import com.example.janus.imageviewer.data.models.ImageDescription;
-import com.example.janus.imageviewer.data.source.ImageRepository;
-import com.example.janus.imageviewer.data.source.Repository;
+import com.example.janus.imageviewer.data.source.ImageService;
+import com.example.janus.imageviewer.data.source.ImageServiceInterface;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
@@ -14,7 +14,7 @@ public class SingleImageDisplayPresenter implements SingleImageDisplayContract.P
 
     private SingleImageDisplayContract.View singleImageDisplayView;
     private int imageIDToDisplay;
-    private ImageRepository imagesService;
+    private ImageService imagesService;
     private Context context;
 
 // TODO Find a more elegant way to fix Picasso's weak Target reference issue
@@ -25,7 +25,7 @@ public class SingleImageDisplayPresenter implements SingleImageDisplayContract.P
  the corresponding ImageDescription object. It then passses the image URL and fields like user, comments, likes, etc to the view for display
 */
 
-    public SingleImageDisplayPresenter(SingleImageDisplayContract.View singleImageDisplayView, ImageRepository imagesService, int imageIDToDisplay, Context context) {
+    public SingleImageDisplayPresenter(SingleImageDisplayContract.View singleImageDisplayView, ImageService imagesService, int imageIDToDisplay, Context context) {
         this.singleImageDisplayView = singleImageDisplayView;
         this.imageIDToDisplay = imageIDToDisplay;
         this.imagesService = imagesService;
@@ -39,7 +39,7 @@ public class SingleImageDisplayPresenter implements SingleImageDisplayContract.P
     @Override
     public void loadImage() {
 
-        imagesService.getImage(imageIDToDisplay, new Repository.ImageSearchCallback() {
+        imagesService.getImage(imageIDToDisplay, new ImageServiceInterface.ImageSearchCallback() {
             @Override
             public void onImageFound(ImageDescription returnedImage) {
                 loadImageFromPicasso (returnedImage);

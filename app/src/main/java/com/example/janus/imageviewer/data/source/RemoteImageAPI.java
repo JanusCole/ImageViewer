@@ -10,7 +10,7 @@ import retrofit2.http.Query;
 
 // This class implements the Pixabay API. It contains both the Pixabay GET API interface and a constant with the Base URL
 
-public class RemoteImageService {
+public class RemoteImageAPI {
 
 // Define the API's Base URL
     private String BASE_URL = "https://pixabay.com/";

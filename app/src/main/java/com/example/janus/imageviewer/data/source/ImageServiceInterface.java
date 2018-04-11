@@ -6,7 +6,7 @@ import java.util.List;
 
 // Main entry point for accessing images. It supports single and multiple image searches
 
-public interface Repository {
+public interface ImageServiceInterface {
 
 
     interface ImagesSearchCallback {
