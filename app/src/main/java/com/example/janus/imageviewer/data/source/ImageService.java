@@ -51,7 +51,7 @@ public class ImageService implements ImageServiceInterface {
             } else {
 
         // Search the data source using the passed search criteria and a page number
-                imageDataSource.getImages(searchCriteria, requestedPageNumber, new ImageDataSource.RemoteImagesSearchCallback() {
+                imageDataSource.getImages(searchCriteria, requestedPageNumber, new ImageDataSource.ImageSearchCallback() {
                     @Override
                     public void onImagesFound(List<ImageDescription> returnedImages, int imageCount) {
 

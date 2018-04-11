@@ -20,7 +20,7 @@ public class RemoteImageDataSource implements ImageDataSource {
         this.remoteImageService = remoteImageService;
     }
 
-    public void getImages (String searchCriteria, int pageNumber, final RemoteImagesSearchCallback remoteImagesSearchCallback) {
+    public void getImages (String searchCriteria, int pageNumber, final ImageSearchCallback imageSearchCallback) {
 
 // Format the search criteria string for query
         String formattedSearchCriteria = searchCriteria.replace(" ", "+");
@@ -41,15 +41,15 @@ public class RemoteImageDataSource implements ImageDataSource {
             public void onResponse(Call<ImageSearchResults> call, Response<ImageSearchResults> response) {
 
                 if (response.isSuccessful()) {
-                    remoteImagesSearchCallback.onImagesFound(response.body().getHits(), response.body().getTotal());
+                    imageSearchCallback.onImagesFound(response.body().getHits(), response.body().getTotal());
                 } else {
-                    remoteImagesSearchCallback.onNetworkError();
+                    imageSearchCallback.onNetworkError();
                 }
             }
 
             @Override
             public void onFailure(Call<ImageSearchResults> call, Throwable t) {
-                remoteImagesSearchCallback.onNetworkError();
+                imageSearchCallback.onNetworkError();
              }
         });
 
