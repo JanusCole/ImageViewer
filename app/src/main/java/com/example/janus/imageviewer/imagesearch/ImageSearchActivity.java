@@ -14,7 +14,7 @@ import com.example.janus.imageviewer.data.source.ImageDataSource;
 // If it gets any results, it passes them on the multiple image display view through an Intent aas an extra.
 
 // It creates the fragment and then creates a Presenter, passing it a repository and the fragment as the View
-// Yadda yadda
+// More yadda yadda
 
 public class ImageSearchActivity extends AppCompatActivity {
 
@@ -32,7 +32,7 @@ public class ImageSearchActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.imageSearchFrameLaout, imageSearchFragment);
         fragmentTransaction.commit();
 
-        // Create the pre senter and pass it a repository
+        // Create the presenter and pass it a repository
 
         RemoteImageAPI imagesAPI = new RemoteImageAPI();
         ImageDataSource remoteImagesSource = new RemoteImageDataSource(imagesAPI);
