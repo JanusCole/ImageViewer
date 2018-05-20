@@ -14,7 +14,6 @@ import com.example.janus.imageviewer.data.source.ImageDataSource;
 // If it gets any results, it passes them on the multiple image display view through an Intent aas an extra.
 
 // It creates the fragment and then creates a Presenter, passing it a repository and the fragment as the View
-// More yadda yadda
 
 public class ImageSearchActivity extends AppCompatActivity {
 
