@@ -31,7 +31,7 @@ public class ImageSearchActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.imageSearchFrameLaout, imageSearchFragment);
         fragmentTransaction.commit();
 
-        // Create the presenter and pass it a repository
+        // Create the presenter and pass it a repos itory
 
         RemoteImageAPI imagesAPI = new RemoteImageAPI();
         ImageDataSource remoteImagesSource = new RemoteImageDataSource(imagesAPI);
