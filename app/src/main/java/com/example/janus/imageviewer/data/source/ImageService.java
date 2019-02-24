@@ -13,7 +13,7 @@ public class ImageService implements ImageServiceInterface {
 
     private static ImageService INSTANCE = null;
 
-    private ImageService imageDataSource;
+    private ImageServiceInterface imageDataSource;
 
 // This is the image cache. It saves ImageDescription objects in a HashMap keyed on the image ID
     Map<Integer,ImageDescription> imageCache = new HashMap<>();
@@ -23,12 +23,12 @@ public class ImageService implements ImageServiceInterface {
     int lastPageNumber = 0;
     int totalImagesAvailable = 0;
 
-    private ImageService(ImageService imageDataSource) {
+    private ImageService(ImageServiceInterface imageDataSource) {
         this.imageDataSource = imageDataSource;
     }
 
 // There an be only one
-    public static ImageService getInstance (ImageService imageDataSource) {
+    public static ImageService getInstance (ImageServiceInterface imageDataSource) {
         if (INSTANCE == null) {
             if (INSTANCE == null) {
                 INSTANCE = new ImageService(imageDataSource);

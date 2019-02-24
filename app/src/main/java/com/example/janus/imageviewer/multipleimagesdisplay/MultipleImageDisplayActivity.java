@@ -5,10 +5,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.janus.imageviewer.R;
+import com.example.janus.imageviewer.data.source.ImageServiceInterface;
 import com.example.janus.imageviewer.data.source.RemoteImageAPI;
 import com.example.janus.imageviewer.data.source.ImageService;
 import com.example.janus.imageviewer.data.source.RemoteImageDataSource;
-import com.example.janus.imageviewer.data.source.ImageDataSource;
 
 // This is the Activity for the Multiple Image Display. It gets search term as a String passed through the
 // through the Intent and, in turn, passes that value on to the Presenter.
@@ -40,7 +40,7 @@ public class MultipleImageDisplayActivity extends AppCompatActivity {
     // Create the presenter and pass it a repository
 
         RemoteImageAPI imagesAPI = new RemoteImageAPI();
-        ImageDataSource remoteImagesSource = new RemoteImageDataSource(imagesAPI);
+        ImageServiceInterface remoteImagesSource = new RemoteImageDataSource(imagesAPI);
         ImageService imagesService = ImageService.getInstance(remoteImagesSource);
         multipleImagesDisplayPresenter = new MultipleImageDisplayPresenter(imagesService, multipleImagesDisplayFragment);
 
